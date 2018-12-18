@@ -40,11 +40,15 @@
     // toDos内の要素をHTMLに全て表示する
     toDos.forEach(function (item, index) {
       const liElementForToDo = document.createElement('li');
-      const num = index + 1;
-      liElementForToDo.innerHTML = num + ' : ' + item + '  <input type="button" class="delete-toDo" value="削除"> ';
       liElementForToDo.id = index;
+      const num = index + 1;
+      liElementForToDo.innerText = num + ' : ' + item ;
       ulToDoList.appendChild(liElementForToDo);
-    })
+      // 削除ボタンを追加
+      const deleteToDoButton = document.createElement('button');
+      deleteToDoButton.textContent = ' 削除 ';
+      liElementForToDo.appendChild(deleteToDoButton);
+    });
   };
 
 
@@ -53,17 +57,6 @@
   //   - 引数はindexを受け取る(インデックス番号)
   //   - 削除後はshowTodosを実行して、Todoリストを整理する
 
-  // 削除ボタンのDOM取得
-  const deleteButton = document.getElementById('delete-toDo-button');
-
-  // 削除するToDoのDOMを取得
-  const deletedToDo = document.getElementById(index);
-
   // 削除ボタンを押した時の処理を実装
-  deleteButton.addEventListener(click, (event => {
-
-
-    showToDos();
-  }));
 
 })();
