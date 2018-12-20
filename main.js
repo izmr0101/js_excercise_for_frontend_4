@@ -16,16 +16,20 @@
 
   const ulToDoList = document.getElementById('todo-list');
 
+  const numberOfToDos = document.getElementById('numberOfToDos');
+
   //「追加」ボタンがクリックされたときの処理を実装する
   //   - テキストボックスに入力されたテキストをTodoリスト一覧に追加する
   //   - テキストボックスの中を空にする
 
   addedToDoButton.addEventListener('click', (event) => {
-    toDos.push(addedToDo.value);
-    addedToDo.value = '';
-    console.log('追加をクリック', event);
-    console.log(toDos);
-    showToDos();
+    if (!(addedToDo.value)) {
+      alert('タスクを入力してください')
+    } else {
+      toDos.push(addedToDo.value);
+      addedToDo.value = '';
+      showToDos();
+    }
   });
 
   // 「todos」の中身を一覧表示する
@@ -42,21 +46,28 @@
       const liElementForToDo = document.createElement('li');
       liElementForToDo.id = index;
       const num = index + 1;
-      liElementForToDo.innerText = num + ' : ' + item ;
+      liElementForToDo.innerText = num + ' : ' + item + ' ';
       ulToDoList.appendChild(liElementForToDo);
-      // 削除ボタンを追加
+
+      // Todo情報を表すli要素(showTodo関数で作成される要素)の中にある削除ボタンをクリックしたら実行される。
+      //   - todosから対応するtodo情報を削除する
+      //   - 引数はindexを受け取る(インデックス番号)
+      //   - 削除後はshowTodosを実行して、Todoリストを整理する
       const deleteToDoButton = document.createElement('button');
       deleteToDoButton.textContent = ' 削除 ';
       liElementForToDo.appendChild(deleteToDoButton);
+      
+      // 削除ボタンを押すとtoDdを削除する
+      deleteToDoButton.addEventListener('click', (event) => {
+        toDos.splice(index, 1);
+        showToDos();
+      });
     });
+
+    if (toDos.length === 0) {
+      numberOfToDos.textContent = '現在、未完了のタスクはありません';
+    } else {
+      numberOfToDos.textContent = '現在、未完了のタスクが' + toDos.length + '個あります';
+    }
   };
-
-
-  // Todo情報を表すli要素(showTodo関数で作成される要素)の中にある削除ボタンをクリックしたら実行される。
-  //   - todosから対応するtodo情報を削除する
-  //   - 引数はindexを受け取る(インデックス番号)
-  //   - 削除後はshowTodosを実行して、Todoリストを整理する
-
-  // 削除ボタンを押した時の処理を実装
-
 })();
