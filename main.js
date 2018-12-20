@@ -56,14 +56,15 @@
       const deleteToDoButton = document.createElement('button');
       deleteToDoButton.textContent = ' 削除 ';
       liElementForToDo.appendChild(deleteToDoButton);
-      
+
       // 削除ボタンを押すとtoDdを削除する
       deleteToDoButton.addEventListener('click', (event) => {
         toDos.splice(index, 1);
         showToDos();
       });
     });
-
+    
+     // 残タスク数を表示する
     if (toDos.length === 0) {
       numberOfToDos.textContent = '現在、未完了のタスクはありません';
     } else {
