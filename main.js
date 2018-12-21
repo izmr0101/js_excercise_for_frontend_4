@@ -3,8 +3,6 @@
   // 入力したTodoタスクの一覧を保持する配列を定義する
   const toDos = [];
 
-  console.log(toDos);
-
   // HTMLのID値を使って以下のDOM要素を取得する
   //   - テキストボックス(input[type="text"])
   //   - 追加ボタン(button要素)
