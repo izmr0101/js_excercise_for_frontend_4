@@ -46,7 +46,7 @@
       const liElementForToDo = document.createElement('li');
       liElementForToDo.id = index;
       const num = index + 1;
-      liElementForToDo.innerText = num + ' : ' + item + ' ';
+      liElementForToDo.innerText = `${num}  :  ${item}  `;
       ulToDoList.appendChild(liElementForToDo);
 
       // Todo情報を表すli要素(showTodo関数で作成される要素)の中にある削除ボタンをクリックしたら実行される。
@@ -63,12 +63,17 @@
         showToDos();
       });
     });
-    
-     // 残タスク数を表示する
+    // 残タスク数を表示
+    showNumberOfTasks();
+  };
+
+  // 残タスク数を表示する関数
+  const showNumberOfTasks = function () {
     if (toDos.length === 0) {
-      numberOfToDos.textContent = '現在、未完了のタスクはありません';
+      numberOfToDos.textContent = `現在、未完了のタスクはありません`;
     } else {
-      numberOfToDos.textContent = '現在、未完了のタスクが' + toDos.length + '個あります';
+      numberOfToDos.textContent = `現在、未完了のタスクが${toDos.length}個あります`;
     }
   };
+
 })();
