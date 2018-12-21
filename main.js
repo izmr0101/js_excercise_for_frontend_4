@@ -16,7 +16,7 @@
 
   const ulToDoList = document.getElementById('todo-list');
 
-  const numberOfToDos = document.getElementById('numberOfToDos');
+  const numberOfTasks = document.getElementById('numberOfTasks');
 
   //「追加」ボタンがクリックされたときの処理を実装する
   //   - テキストボックスに入力されたテキストをTodoリスト一覧に追加する
@@ -70,9 +70,9 @@
   // 残タスク数を表示する関数
   const showNumberOfTasks = function () {
     if (toDos.length === 0) {
-      numberOfToDos.textContent = `現在、未完了のタスクはありません`;
+      numberOfTasks.textContent = `現在、未完了のタスクはありません`;
     } else {
-      numberOfToDos.textContent = `現在、未完了のタスクが${toDos.length}個あります`;
+      numberOfTasks.textContent = `現在、未完了のタスクが${toDos.length}個あります`;
     }
   };
 
