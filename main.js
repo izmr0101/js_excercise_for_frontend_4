@@ -62,11 +62,12 @@
         showToDos();
       });
     });
+
     // 残タスク数を表示
     showNumberOfTasks();
 
     // タスクを保存
-    storedToDos('storedList', toDos);
+    storedToLocalStorage('storedList', toDos);
 
   };
 
@@ -80,7 +81,7 @@
   };
 
   // タスクをlocalstorageに保存する関数
-  const storedToDos = function (key, array) {
+  const storedToLocalStorage = function (key, array) {
     const jsonArray = JSON.stringify(array);
     localStorage.setItem(key, jsonArray);
   };
