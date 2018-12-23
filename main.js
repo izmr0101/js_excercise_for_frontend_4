@@ -70,7 +70,7 @@
     showNumberOfTasks();
 
     // タスクを保存
-    storedToLocalStorage(STORE_KEY, toDos);
+    storedToLocalStorage(toDos);
 
   };
 
@@ -84,9 +84,9 @@
   };
 
   // タスクをlocalstorageに保存する関数
-  const storedToLocalStorage = function (key, array) {
+  const storedToLocalStorage = function (array) {
     const jsonArray = JSON.stringify(array);
-    localStorage.setItem(key, jsonArray);
+    localStorage.setItem(STORE_KEY, jsonArray);
   };
 
   // ページ読み込み時に保存されているToDoを読み込む処理
