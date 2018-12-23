@@ -1,7 +1,11 @@
 // グローバル空間に変数や関数をセットしないために即時関数で閉じ込めている
 (() => {
+
   // 入力したTodoタスクの一覧を保持する配列を定義する
-  const toDos = [];
+  let toDos = [];
+
+  // localStorageに保存する際のKey値を定義
+  const STORE_KEY = 'storedList';
 
   // HTMLのID値を使って以下のDOM要素を取得する
   //   - テキストボックス(input[type="text"])
@@ -61,8 +65,13 @@
         showToDos();
       });
     });
+
     // 残タスク数を表示
     showNumberOfTasks();
+
+    // タスクを保存
+    storedToLocalStorage(toDos);
+
   };
 
   // 残タスク数を表示する関数
@@ -72,6 +81,24 @@
     } else {
       numberOfTasks.textContent = `現在、未完了のタスクが${toDos.length}個あります`;
     }
+  };
+
+  // タスクをlocalstorageに保存する関数
+  const storedToLocalStorage = function (array) {
+    const jsonArray = JSON.stringify(array);
+    localStorage.setItem(STORE_KEY, jsonArray);
+  };
+
+  // ページ読み込み時に保存されているToDoを読み込む処理
+
+  window.onload = function () {
+
+    const parseToDos = JSON.parse(localStorage.getItem(STORE_KEY));
+
+    if (parseToDos) {
+      toDos = parseToDos;
+      showToDos();
+    };
   };
 
 })();
