@@ -4,6 +4,9 @@
   // 入力したTodoタスクの一覧を保持する配列を定義する
   let toDos = [];
 
+  // localStorageに保存する際のKey値を定義
+  const STORE_KEY = 'storedList';
+
   // HTMLのID値を使って以下のDOM要素を取得する
   //   - テキストボックス(input[type="text"])
   //   - 追加ボタン(button要素)
@@ -67,7 +70,7 @@
     showNumberOfTasks();
 
     // タスクを保存
-    storedToLocalStorage('storedList', toDos);
+    storedToLocalStorage(STORE_KEY, toDos);
 
   };
 
@@ -90,7 +93,7 @@
 
   window.onload = function () {
 
-    const parseToDos = JSON.parse(localStorage.getItem('storedList'));
+    const parseToDos = JSON.parse(localStorage.getItem(STORE_KEY));
 
     if (parseToDos) {
       toDos = parseToDos;
